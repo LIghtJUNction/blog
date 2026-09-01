@@ -63,8 +63,9 @@ export async function getCategoryList(): Promise<Category[]> {
 	});
 	const count: { [key: string]: number } = {};
 	for (const post of allBlogPosts) {
-		const categoryName =
-			post.data.category?.trim() || i18n(I18nKey.uncategorized);
+		const categoryName = post.data.category
+			? post.data.category.trim()
+			: i18n(I18nKey.uncategorized);
 		count[categoryName] = (count[categoryName] ?? 0) + 1;
 	}
 
